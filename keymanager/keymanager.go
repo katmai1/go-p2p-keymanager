@@ -21,7 +21,7 @@ type Claves struct {
 }
 
 // devuelve una estructura a partir de las claves
-func NuevaClave(private crypto.PrivKey) Claves {
+func nuevaClave(private crypto.PrivKey) Claves {
 	public := private.GetPublic()
 	priv_bytes, _ := crypto.MarshalPrivateKey(private)
 	pub_bytes, _ := crypto.MarshalPublicKey(public)
@@ -44,7 +44,7 @@ func Newkey() Claves {
 		panic(err)
 	}
 	fmt.Println(" [i] Nueva clave privada creada.")
-	return NuevaClave(private)
+	return nuevaClave(private)
 }
 
 // TODO: permitir personalizar el nombre del fichero al exportar
@@ -90,5 +90,5 @@ func Import_key() Claves {
 	private, _ := crypto.UnmarshalPrivateKey(data.Bytes)
 	fmt.Println(" [i] Clave privada importada del fichero 'private_key.pem'")
 	// devolvemos la estructura de esta clave
-	return NuevaClave(private)
+	return nuevaClave(private)
 }
